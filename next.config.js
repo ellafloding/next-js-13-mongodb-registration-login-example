@@ -2,8 +2,8 @@
 const nextConfig = {
     reactStrictMode: true,
     serverRuntimeConfig: {
-        connectionString: "mongodb://localhost/next-js-registration-login-example",
-        secret: 'THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING'
+        connectionString: "mongodb+srv://adamj:qKEyyVe6kdEQoaQd@dundercluster.m1isx5z.mongodb.net/test?retryWrites=true&w=majority",
+        secret: 'ost123'
     },
     publicRuntimeConfig: {
         apiUrl: process.env.NODE_ENV === 'development'

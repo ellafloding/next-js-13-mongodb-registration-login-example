@@ -1,6 +1,10 @@
 import Link from 'next/link';
+import Head from 'next/head';
+import Image from 'next/image';
 
 import { userService } from 'services';
+
+
 
 export default Home;
 
