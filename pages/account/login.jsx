@@ -55,6 +55,7 @@ function Login() {
                             Login
                         </button>
                         <Link href="/account/register" className="btn btn-link">Register</Link>
+                        <Link href="/account/startPage" className="btn btn-link"> Start </Link>
                     </form>
                 </div>
             </div>

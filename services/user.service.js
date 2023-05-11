@@ -18,6 +18,7 @@ export const userService = {
     getAll,
     getById,
     update,
+    submitTip,
     delete: _delete
 };
 
@@ -71,4 +72,8 @@ async function _delete(id) {
     if (id === userSubject.value.id) {
         logout();
     }
+}
+
+async function submitTip(tip) {
+    await fetchWrapper.post(`${baseUrl}/tip`, tip);
 }

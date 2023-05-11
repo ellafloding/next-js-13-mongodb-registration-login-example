@@ -1,3 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .app-container {
     min-height: 350px;
+}
+
+:root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --foreground-rgb: 255, 255, 255;
+        --background-start-rgb: 0, 0, 0;
+        --background-end-rgb: 0, 0, 0;
+    }
+}
+
+body {
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(
+            to bottom,
+            transparent,
+            rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+header {
+    z-index: 32;
+    display: flex;
+    padding: 16px;
+    font-size: 14px;
+    background-color: darkgreen;
+}
+
+/*LOGIN SIDA*/
+.logga{
+    position: relative;
+    margin-top: 100px;
+    margin-left: 600px;
+}
+
+.loginButton{
+    background-color: #4B9A30;
+    color: black;
+    padding: 25px 80px;
+    border-radius: 30px;
+    /*margin-bottom: 400px;*/
+    /*margin-left: 100px;*/
+}
+
+.registerButton{
+    background-color: darkgoldenrod;
+    color: black;
+    padding: 25px 80px;
+    border-radius: 30px;
+    /*margin-bottom: 400px;*/
+    /*margin-left: 100px;*/
+}
+
+.inputEmailPassword{
+    margin-top: 200px;
+    padding: 100px;
+}
+
+.parent{
+    /*margin-top: 0px;*/
+    /*margin-right: 200px;*/
+    padding: 2rem 2rem;
+    text-align: center;
+}
+.child {
+    display: inline-block;
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+.login_box {
+    width: 340px;
+    margin-left: 0px;
+    background-color: #fff;
+}
+
+
+.button{
+    border-width: 5px;
+    color: black;
+    padding: 20px 20px;
+    /*margin-bottom: 400px;*/
+    /*margin-left: 100px;*/
 }
