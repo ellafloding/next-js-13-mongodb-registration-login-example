@@ -11,22 +11,24 @@ export default function Home() {
      * @description Triggers when the file input changes (ex: when a file is selected)
      */
 
-    function handleOnChange(changeEvent) {
-        const reader = new FileReader();
-
-        reader.onload = function(onLoadEvent) {
-            setImageSrc(onLoadEvent.target.result);
-            setUploadData(undefined);
-        }
-
-        reader.readAsDataURL(changeEvent.target.files[0]);
-    }
+    // function handleOnChange(changeEvent) {
+    //     const reader = new FileReader();
+    //
+    //     reader.onload = function(onLoadEvent) {
+    //         setImageSrc(onLoadEvent.target.result);
+    //         setUploadData(undefined);
+    //     }
+    //
+    //         reader.readAsDataURL(changeEvent.target.files[0]);
+    //
+    // }
 
     /**
      * handleOnSubmit
      * @description Triggers when the main form is submitted
      */
 
+    const uploadELla ='my_uploads';
     async function handleOnSubmit(event) {
         event.preventDefault();
         const form = event.currentTarget;
@@ -34,12 +36,21 @@ export default function Home() {
         console.log(fileInput);
 
         const formData = new FormData();
+        const tags = document.getElementById("tags").value;
 
         for( const file of fileInput.files){
             formData.append('file', file);
         }
 
-        formData.append('upload_preset', 'my-uploads')
+        const cloudinaryAdam = "dmhozrlru";
+        const cloudinaryElla = "dgbatwabz";
+        const uploadAdam = "tcsyqjkq";
+        const uploadELla ='my-uploads';
+
+        formData.append('upload_preset', uploadELla);
+        formData.append('tags', tags);
+        formData.append('media_metadata', "true");
+        // formData.append('filename_override', name)
 
         const data = await fetch('https://api.cloudinary.com/v1_1/dgbatwabz/image/upload', {
             method: 'POST',
@@ -70,14 +81,21 @@ export default function Home() {
                     Ladda upp dina bilder till Cloudinary.
                 </p>
 
-                <form className={styles.form} method="post" onChange={handleOnChange} onSubmit={handleOnSubmit}>
+                <form className={styles.form} method="post"
+                      // onChange={handleOnChange}
+                      onSubmit={handleOnSubmit}>
                     <p>
                         <input type="file" name="file" />
                     </p>
 
-                    <img src={imageSrc} />
+                    <p>
+                        <input type="text" id="tags" placeholder={"Tags"}/>
+                    </p>
 
-                    {imageSrc && !uploadData && (
+
+                    {/*<img src={imageSrc} />*/}
+
+                    {!uploadData && (
                         <p>
                             <button>Upload Files</button>
                         </p>
