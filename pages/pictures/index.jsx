@@ -9,8 +9,9 @@ import {func} from "prop-types";
 
 import { useState } from "react";
 // import styles from "../styles/Home.module.css";
-import {createSignature} from "../../helpers/generateCloudinarySignature";
+// import {createSignature} from "../../helpers/generateCloudinarySignature";
 import Head from "next/head";
+import {createSignature} from "../../helpers/generateCloudinarySignature";
 export default function Home() {
     const [imageSrc, setImageSrc] = useState();
     const [uploadData, setUploadData] = useState();
@@ -43,21 +44,20 @@ export default function Home() {
     const uploadAdam = "tcsyqjkq";
     const uploadELla ='my-uploads';
     const uploadSigned = "ml_default";
-    const API_KEY = "663938968425976";
-    const API_SECRET = "RtEQlGhyTQYVVfgzLwn-quaBR2U";
+    const API_KEY = "743315572255242";
+    const API_SECRET = "MqyeLqqS8jZb-C0eLKBXH5RbQmc";
 
     async function handleOnSubmit(event) {
         event.preventDefault();
 
        // var id = document.getElementById('file')
 
-        var timestamp = Math.round((new Date)/1000);
+        const timestamp = Math.round((new Date)/1000);
 
         // signature = generateSignature(()=>{
         //     console.log('signature generated');
         // });
 
-        const signature = createSignature(timestamp);
 
         const form = event.currentTarget;
         const fileInput = Array.from(form.elements).find(({name}) => name === 'file')
@@ -65,21 +65,30 @@ export default function Home() {
 
         const formData = new FormData();
         const tags = document.getElementById("tags").value;
+        const photographer = document.getElementById("photographer").value;
 
         for( const file of fileInput.files){
             formData.append('file', file);
         }
 
+        const media_metadata = true;
+
         formData.append('upload_preset', uploadSigned);
         formData.append('tags', tags);
-        formData.append('api_key', API_KEY);
-        formData.append('timestamp', timestamp);
-        formData.append('signature', signature);
+        formData.append('media_metadata', media_metadata);
+        formData.append('photographer_name', photographer);
+        // formData.append('api_key', API_KEY);
+        // formData.append('timestamp', timestamp);
+        // formData.append('signature', signature);
 
+        const params = "media_metadata=true" + "&photographer_name=" + photographer +"&tags=" + tags+ "&timestamp=" + timestamp + "&upload_preset=" + uploadSigned;
+        const signature = createSignature(params);
 
-        const data = await fetch('https://api.cloudinary.com/v1_1/dgbatwabz/image/upload?api_key=663938968425976&timestamp=' + timestamp+ '&signature=' + signature, {
+        const data = await fetch('https://api.cloudinary.com/v1_1/dgbatwabz/image/upload?api_key=743315572255242&timestamp=' + timestamp+ '&signature=' + signature, {
             method: 'POST',
             body: formData,
+            media_metadata: true,
+            photographer_name: photographer,
             // apiKey: API_KEY,
             // uploadSignature: signature
 
@@ -146,6 +155,10 @@ export default function Home() {
 
                         <p>
                             <input type="text" id="tags" placeholder={"Tags"} required={true}/>
+                        </p>
+
+                        <p>
+                            <input type="text" id="photographer" placeholder={"Photographer"} required={true}/>
                         </p>
 
 
