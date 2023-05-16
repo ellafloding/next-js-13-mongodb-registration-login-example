@@ -1,4 +1,6 @@
 
+
+
 const API_SECRET = "MqyeLqqS8jZb-C0eLKBXH5RbQmc";
 const crypto = require('crypto');
 export function createSignature(params) {
@@ -7,6 +9,7 @@ export function createSignature(params) {
         .createHash('sha1')
         .update(`${params}${API_SECRET}`)
         .digest('hex');
+
 
     return signature;
 
